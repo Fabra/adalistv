@@ -49,24 +49,25 @@ main {
 }
 
 .grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    justify-items: center;
 }
 
 .serie {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 1em;
+    margin: 1em 0;
     overflow: hidden;
-    width: 50%;
     text-align: center;
-    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
 }
 
 .serie img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-bottom: 1px solid #ddd;
 }
@@ -75,6 +76,31 @@ main {
     margin: 0.5em 0;
 }
 
+#series-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2em;
+    justify-items: center;
+} 
+
+@media (min-width: 1024px) {
+    #series-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+} 
+
 #serie-details {
     display: flex;
     flex-direction: column;
@@ -82,7 +108,8 @@ main {
 }
 
 #serie-details img {
-    max-width: 300px;
+    max-width: 100%;
+    width: auto;
     border-radius: 8px;
     margin-bottom: 1em;
 }
@@ -93,21 +120,21 @@ main {
     text-align: center;
 }
 
-#series-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em;
-    justify-items: center;
-}
-
 #episodes-list {
     width: 100%;
     max-width: 600px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #episodes-list ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 #episodes-list li {
@@ -121,17 +148,12 @@ main {
 #episodes-list li a {
     text-decoration: none;
     color: #333;
-
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+
+footer p {
+    margin: 0;
 }
 
 .social-icons {
@@ -147,15 +169,34 @@ footer {
     height: 24px;
 }
 
+@media (max-width: 480px) {
+    footer {
+        position: static;
+        padding: 1em 0;
+    }
+}
+
 #paddingInvisible {
     background:#f4f4f4;
     text-align:center;
 }
+
 #paddingInvisible > div {
     display:inline-block;
     background:#f4f4f4;
     font-size:0px;
     line-height:0px;
     margin:0px;
-    padding:100px;
+    padding:3rem;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
 }
